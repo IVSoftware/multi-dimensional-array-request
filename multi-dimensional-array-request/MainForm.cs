@@ -19,10 +19,10 @@ namespace multi_dimensional_array_request
                 var index = i % 28;
                 _array[bank, index] = i + 1;
             }
-            _childTest1 = new ChildTest { DataSource = _array[0] };
-            _childTest2 = new ChildTest { DataSource = _array[1] };
-            _childTest3 = new ChildTest { DataSource = _array[2] };
-            _childTest4 = new ChildTest { DataSource = _array[3] };
+            _childTest1 = new ChildTest { Text = "Child Test 1", DataSource = _array[0] };
+            _childTest2 = new ChildTest { Text = "Child Test 2", DataSource = _array[1] };
+            _childTest3 = new ChildTest { Text = "Child Test 3", DataSource = _array[2] };
+            _childTest4 = new ChildTest { Text = "Child Test 4", DataSource = _array[3] };
         }
         private readonly MultidimensionalArray _array = new MultidimensionalArray();
 
@@ -51,11 +51,11 @@ namespace multi_dimensional_array_request
 
         private void buttonClear1_Click(object sender, EventArgs e){ for (int cell = 0; cell < 28; cell++)  _array[0, cell] = 0x00; } 
 
-        private void buttonClear2_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; }
+        private void buttonClear2_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[1, cell] = 0x00; }
 
-        private void buttonClear3_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; }
+        private void buttonClear3_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[2, cell] = 0x00; }
 
-        private void buttonClear4_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; }
+        private void buttonClear4_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[3, cell] = 0x00; }
 
         private void buttonTest1_Click(object sender, EventArgs e) => _array[0,0] = 0xFF;
     }
