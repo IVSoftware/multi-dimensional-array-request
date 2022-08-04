@@ -6,7 +6,7 @@ Example of a multidimensional array that uses an array syntax `_array[1][5] = 0x
 
     private void buttonClear2_Click(object sender, EventArgs e) 
     { 
-        for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; 
+        for (int cell = 0; cell < 28; cell++) _array[1, cell] = 0x00; 
     }
 
 ![before and after clear](https://github.com/IVSoftware/multi-dimensional-array-request/blob/master/multi-dimensional-array-request/ReadMe/before-and-after-clear.png)
