@@ -1,6 +1,6 @@
 # Multi Dimensional Array Request
 
-This multidimensional array uses an array syntax `_array[1][5] = 0xff` to display a value at the correct index on one of four `ChildTest` forms. This outcome is achieved using data bindings because you will never have to worry about updating the `ChildTest` calls because it will always happen automatically after the initial setup. This walk-through will demonstrate how to do that.
+Example of a multidimensional array that uses an array syntax `_array[1][5] = 0xff` to display a value at the correct index on one of four `ChildTest` forms, an outcome that is achieved using data bindings. The benefit of doing this is that the `ChildTest` labels update automatically after the initial setup. This walk-through will demonstrate how to do that.
 
 **USAGE**
 
