@@ -4,7 +4,10 @@ Example of a multidimensional array that uses an array syntax `_array[1][5] = 0x
 
 **USAGE**
 
-    private void buttonClear2_Click(object sender, EventArgs e) { for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; }
+    private void buttonClear2_Click(object sender, EventArgs e) 
+    { 
+        for (int cell = 0; cell < 28; cell++) _array[0, cell] = 0x00; 
+    }
 
 ![before and after clear](https://github.com/IVSoftware/multi-dimensional-array-request/blob/master/multi-dimensional-array-request/ReadMe/before-and-after-clear.png)
 
@@ -15,7 +18,7 @@ Example of a multidimensional array that uses an array syntax `_array[1][5] = 0x
 ***
 **Observable uint**
 
-What makes this work is having a `uint` value that sends a notification whenever its value changes that will work behind the scenes.
+The bindings are based on a `uint` value that sends a notification whenever its value changes. This class works behind the scenes to keep everything synced.
 
     public class ObservableUInt : INotifyPropertyChanged
     {
@@ -41,7 +44,7 @@ What makes this work is having a `uint` value that sends a notification whenever
 ***
 **Multidimensional array class**
 
-Here we define a multidimensional array that gets and sets a `uint` value with the indexer syntax shown in your code `_array[bank][index] = 0xnn`. Under the hood are arrays made from these observable uints but it makes no difference in terma of interacting with the multidimensional array.
+The multidimensional array provides a standard array indexer that gets and sets a `uint` value using `_array[bank][index] = 0xnn`. Under the hood are arrays made from these observable uints but it makes no difference in terma of interacting with the multidimensional array.
 
     public class MultidimensionalArray
     {
@@ -75,43 +78,46 @@ Here we define a multidimensional array that gets and sets a `uint` value with t
 
 This is a `Form` with a `TableLayoutPanel` on it that is unremarkable except for the addition of a `DataSource` property. It is here that the observable uints are bound to the textbox values.
 
-    public ObservableUInt[] DataSource
+    public partial class ChildTest : Form
     {
-        set
+        public ObservableUInt[] DataSource
         {
-            if (value != null)
+            set
             {
-                for (int i = 0; i < 28; i++)
+                if (value != null)
                 {
-                    var row = (i / 7) * 2;
-                    var column = i % 7;
-                    // Add Label
-                    var label = new Label
+                    for (int i = 0; i < 28; i++)
                     {
-                        Size = new Size(width: 150, height: 50),
-                        Text = $"{i + 1}",
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        BackColor = Color.DimGray,
-                        ForeColor = Color.White,
-                        Anchor = (AnchorStyles)0xf,
-                    };
-                    tableLayoutPanel.Controls.Add(label, column, row);
-                    row++;
-                    // Add Textbox and bind the Formatted property to it
-                    var textbox = new TextBox
-                    {
-                        Size = new Size(width: 150, height: 50),
-                        TextAlign = HorizontalAlignment.Center,
-                    };
-                    tableLayoutPanel.Controls.Add(textbox, column, row);
+                        var row = (i / 7) * 2;
+                        var column = i % 7;
+                        // Add Label
+                        var label = new Label
+                        {
+                            Size = new Size(width: 150, height: 50),
+                            Text = $"{i + 1}",
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            BackColor = Color.DimGray,
+                            ForeColor = Color.White,
+                            Anchor = (AnchorStyles)0xf,
+                        };
+                        tableLayoutPanel.Controls.Add(label, column, row);
+                        row++;
+                        // Add Textbox and bind the Formatted property to it
+                        var textbox = new TextBox
+                        {
+                            Size = new Size(width: 150, height: 50),
+                            TextAlign = HorizontalAlignment.Center,
+                        };
+                        tableLayoutPanel.Controls.Add(textbox, column, row);
 
-                    textbox.DataBindings.Add(
-                        nameof(Label.Text),
-                        value[i],
-                        nameof(ObservableUInt.Formatted),
-                        false,
-                        DataSourceUpdateMode.OnPropertyChanged
-                        );
+                        textbox.DataBindings.Add(
+                            nameof(Label.Text),
+                            value[i],
+                            nameof(ObservableUInt.Formatted),
+                            false,
+                            DataSourceUpdateMode.OnPropertyChanged
+                         );
+                    }
                 }
             }
         }
