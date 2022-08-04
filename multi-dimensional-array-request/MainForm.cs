@@ -19,7 +19,6 @@ namespace multi_dimensional_array_request
                 var index = i % 28;
                 _array[bank, index] = i + 1;
             }
-
             _childTest1 = new ChildTest { DataSource = _array[0] };
             _childTest2 = new ChildTest { DataSource = _array[1] };
             _childTest3 = new ChildTest { DataSource = _array[2] };
@@ -105,7 +104,6 @@ namespace multi_dimensional_array_request
             }
         }
         public string Formatted => $"0x{_Value.ToString("X2")}";
-
         public event PropertyChangedEventHandler PropertyChanged;
         public static implicit operator uint(ObservableUInt @this) => @this._Value;
     }
